@@ -9,17 +9,10 @@ class HomeController extends Controller
 {
     function index()
     {
+        $user = auth()->user();
+
         $categories = Category::all();
         $games = Game::All();
-        return view('shop/index', ['categories' => $categories, 'games' => $games]);
+        return view('shop/index', ['user' => $user, 'categories' => $categories, 'games' => $games]);
     }
-
-    function pageSingleNew()
-    {
-        $categories = Category::all();
-        $games = Game::All();
-
-        return view('shop/1news', ['categories' => $categories, 'games' => $games]);
-    }
-
 }

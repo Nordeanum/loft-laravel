@@ -11,9 +11,16 @@
             <div class="sidebar-item">
                 <div class="sidebar-item__title">Категории</div>
                 <div class="sidebar-item__content">
+                    @auth<a href="{{route('categories.create')}}">Добавить категории</a>@endauth
                     <ul class="sidebar-category">
                         @foreach($categories as $category)
-                            <li class="sidebar-category__item"><a href="/catalog/{{$category->name}}" class="sidebar-category__item__link">{{$category->name}}</a></li>
+                            <li class="sidebar-category__item">
+                                <a href="/catalog/{{$category->name}}" class="sidebar-category__item__link">{{$category->name}}</a>
+                                @auth
+                                    <a href="/category/edit/{{$category->id}}">Отредактировать</a>
+                                    <a href="/category/delete/{{$category->id}}">Удалить</a>
+                                @endauth
+                            </li>
                         @endforeach
                     </ul>
                 </div>

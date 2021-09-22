@@ -15,14 +15,22 @@
     </div>
 </div>
 <div class="content-main__container">
+    @auth<a href="{{route('games.create')}}">Добавить игры</a>@endauth
     <div class="products-columns">
         @foreach($games as $game)
             <div class="products-columns__item">
                 <div class="products-columns__item__title-product"><a href="#" class="products-columns__item__title-product__link">{{$game->name}}</a></div>
                 <div class="products-columns__item__thumbnail">
-                    <a href="#" class="products-columns__item__thumbnail__link"><img src="img/cover/game-1.jpg" alt="Preview-image" class="products-columns__item__thumbnail__img" /></a>
+                    <a href="/catalog/{{$game->category->name}}/{{$game->name}}" class="products-columns__item__thumbnail__link"><img src="img/cover/game-1.jpg" alt="Preview-image" class="products-columns__item__thumbnail__img" /></a>
                 </div>
-                <div class="products-columns__item__description"><span class="products-price">{{$game->price}} руб</span><a href="#" class="btn btn-blue">Купить</a></div>
+                <div class="products-columns__item__description">
+                    <span class="products-price">{{$game->price}} руб</span>
+                    <a href="#" class="btn btn-blue">Купить</a>
+                </div>
+                @auth
+                    <a href="/game/edit/{{$game->id}}">Отредактировать</a>
+                    <a href="/game/delete/{{$game->id}}">Удалить</a>
+                @endauth
             </div>
         @endforeach
     </div>

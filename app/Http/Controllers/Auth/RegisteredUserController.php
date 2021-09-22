@@ -39,9 +39,15 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $isAdmin = false;
+        if($request->admin == 'on') {
+            $isAdmin = true;
+        }
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'isAdmin' => $isAdmin,
             'password' => Hash::make($request->password),
         ]);
 

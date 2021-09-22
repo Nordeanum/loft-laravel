@@ -19,6 +19,13 @@
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             </div>
 
+            <!-- Admin -->
+            <div class="mt-4">
+                <x-label for="admin" :value="__('Are you admin?')" />
+
+                <x-input id="admin" class="block mt-1" type="checkbox" name="admin" />
+            </div>
+
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />
