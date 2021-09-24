@@ -5,7 +5,7 @@
     <nav class="main-navigation">
         <ul class="nav-list">
             <li class="nav-list__item"><a href="/" class="nav-list__item__link">Главная</a></li>
-            <li class="nav-list__item"><a href="#" class="nav-list__item__link">Мои заказы</a></li>
+            <li class="nav-list__item"><a href="/orders" class="nav-list__item__link">Мои заказы</a></li>
             <li class="nav-list__item"><a href="/news" class="nav-list__item__link">Новости</a></li>
             <li class="nav-list__item"><a href="/about" class="nav-list__item__link">О компании</a></li>
         </ul>
@@ -26,6 +26,18 @@
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth <span>Вы вошли как: {{$user->name}}</span>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                        <x-responsive-nav-link :href="route('logout')"
+                                               onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-responsive-nav-link>
+                    </form>
+                    @if ($user->isAdmin)
+                    <a href="/admin">Редактировать</a>
+                    @endif
             @else
                         <a href="{{ route('login') }}" class="authorization-block__link">Войти</a>
 

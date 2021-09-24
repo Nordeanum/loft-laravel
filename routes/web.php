@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +42,15 @@ Route::post('/game/save/{id}', [GameController::class, 'save'])->name('games.sav
 
 // Orders
 Route::get('/orders', [OrderController::class, 'index'])->name('orders');
-Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
+Route::get('/orders/create/{id}', [OrderController::class, 'create'])->name('orders.create');
+Route::get('/orders/success', [OrderController::class, 'success'])->name('orders.success');
+
+Route::post('/orders/add', [OrderController::class, 'add'])->name('orders.add');
+
+// Admin
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+
+Route::post('/admin/edit', [AdminController::class, 'edit'])->name('admin.edit');
 
 
 // Static pages

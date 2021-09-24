@@ -48,6 +48,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'isAdmin' => $isAdmin,
+            'notification_email' => $request->notification_email,
             'password' => Hash::make($request->password),
         ]);
 

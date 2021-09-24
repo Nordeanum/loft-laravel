@@ -9,10 +9,10 @@ class HomeController extends Controller
 {
     function index()
     {
-        $user = auth()->user();
-
-        $categories = Category::all();
-        $games = Game::All();
-        return view('shop/index', ['user' => $user, 'categories' => $categories, 'games' => $games]);
+        return view('shop/index', [
+            'user' => auth()->user(),
+            'categories' => Category::all(),
+            'games' => Game::query()->orderBy('id', 'DESC')->paginate('6')
+        ]);
     }
 }
