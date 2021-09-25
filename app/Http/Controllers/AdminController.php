@@ -22,7 +22,7 @@ class AdminController extends Controller
 
         return view('admin.admin', [
             'user' => $user,
-            'categories' => Category::all(),
+            'categories' => Category::take(10)->get(),
         ]);
     }
 

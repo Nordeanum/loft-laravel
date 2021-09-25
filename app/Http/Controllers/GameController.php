@@ -9,7 +9,7 @@ use App\Http\Requests\GameRequest;
 
 class GameController extends Controller
 {
-    function index(Request $request)
+    public function index(Request $request)
     {
         $user = auth()->user();
 
@@ -20,24 +20,24 @@ class GameController extends Controller
         return view('shop/1product', ['user' => $user, 'categories' => $categories, 'game' => $game, 'current_category' => $category]);
     }
 
-    function create()
+    public function create()
     {
         return view('games.create');
     }
 
-    function edit($id)
+    public function edit($id)
     {
         $game = Game::query()->find($id);
         return view('games.edit', ['game' => $game]);
     }
 
-    function delete(Request $request)
+    public function delete(Request $request)
     {
         Game::destroy($request->id);
         return redirect()->route('home');
     }
 
-    function add(GameRequest $request)
+    public function add(GameRequest $request)
     {
         $game = new Game();
         $game->category_id = $request->category_id;
@@ -49,7 +49,7 @@ class GameController extends Controller
         return redirect()->route('home');
     }
 
-    function save(GameRequest $request)
+    public function save(GameRequest $request)
     {
         $game = Game::query()->find($request->id);
         $game->category_id = $request->category_id;

@@ -9,7 +9,7 @@ use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
-    function index(Request $request)
+    public function index(Request $request)
     {
         $user = auth()->user();
 
@@ -21,24 +21,24 @@ class CategoryController extends Controller
         return view('shop/category', ['user' => $user, 'categories' => $categories, 'games' => $games, 'current_category' => $category]);
     }
 
-    function create()
+    public function create()
     {
         return view('categories.create');
     }
 
-    function edit($id)
+    public function edit($id)
     {
         $category = Category::query()->find($id);
         return view('categories.edit', ['category' => $category]);
     }
 
-    function delete(Request $request)
+    public function delete(Request $request)
     {
         Category::destroy($request->id);
         return redirect()->route('home');
     }
 
-    function add(CategoryRequest $request)
+    public function add(CategoryRequest $request)
     {
         $game = new Category();
         $game->name = $request->name;
@@ -48,7 +48,7 @@ class CategoryController extends Controller
         return redirect()->route('home');
     }
 
-    function save(CategoryRequest $request)
+    public function save(CategoryRequest $request)
     {
         $game = Category::query()->find($request->id);
         $game->name = $request->name;

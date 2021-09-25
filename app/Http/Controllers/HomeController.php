@@ -7,11 +7,11 @@ use App\Models\Game;
 
 class HomeController extends Controller
 {
-    function index()
+    public function index()
     {
         return view('shop/index', [
             'user' => auth()->user(),
-            'categories' => Category::all(),
+            'categories' => Category::take(10)->get(),
             'games' => Game::query()->orderBy('id', 'DESC')->paginate('6')
         ]);
     }

@@ -28,7 +28,7 @@ class OrderController extends Controller
 
         return view('order.list', [
             'user' => $user,
-            'categories' => Category::all(),
+            'categories' => Category::take(10)->get(),
             'orders' => $orders
         ]);
     }
@@ -37,7 +37,7 @@ class OrderController extends Controller
     {
         return view('order.create', [
             'user' => auth()->user(),
-            'categories' => Category::all(),
+            'categories' => Category::take(10)->get(),
             'game' => Game::find($id)
         ]);
     }
@@ -59,7 +59,7 @@ class OrderController extends Controller
 
         return view('order.success', [
             'user' => auth()->user(),
-            'categories' => Category::all(),
+            'categories' => Category::take(10)->get(),
         ]);
     }
 
